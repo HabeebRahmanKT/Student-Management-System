@@ -25,7 +25,7 @@ NOT_FOUND = 'NO_DATA_FOUND'
 def extract_roll_number_from_data(data):
     roll_number = NOT_FOUND
     try:
-        roll_number = int(data[0][0:3])
+        roll_number = int(data[0][0:5])
     except ValueError:
         print('Value Error!')
     return roll_number
@@ -112,7 +112,6 @@ def delete_student(roll_no):
 # Window for viewing the list of all students
 def show_all_students():
     students = get_all_students()
-    print(students)
     if students == NOT_FOUND:
         students = ['No student added...']
 
@@ -141,9 +140,9 @@ def show_all_students():
 
         elif event == 'View Details':
             roll_number = extract_roll_number_from_data(values['STUDENTS_LIST'])
-            print(roll_number)
             if roll_number != NOT_FOUND:
                 student_details = get_details_with_roll_no(roll_number)
+                print(type(student_details))
                 edited_details = f"Name            :   {student_details[1]}\n\n" \
                                  f"Date Of Birth   :   {student_details[2]}\n\n" \
                                  f"Fathers Name    :   {student_details[3]}\n\n" \
